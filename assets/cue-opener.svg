@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1598 944" width="1598" height="944">
+  <title>Cue opener</title>
+  <defs>
+    <linearGradient id="body" gradientUnits="userSpaceOnUse" x1="1375" y1="561" x2="1375" y2="836">
+      <stop offset="0" stop-color="#9aa9d4"/>
+      <stop offset=".45" stop-color="#b0959f"/>
+      <stop offset="1" stop-color="#e07c6f"/>
+    </linearGradient>
+    <radialGradient id="glow" gradientUnits="userSpaceOnUse" cx="1378" cy="656" r="95">
+      <stop offset="0" stop-color="#93acdd" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#93acdd" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="shape">
+      <polygon points="1375.0,575.0 1412.6,659.2 1504.3,669.0 1435.9,730.8 1454.9,821.0 1375.0,775.0 1295.1,821.0 1314.1,730.8 1245.7,669.0 1337.4,659.2" fill="#fff" stroke="#fff" stroke-width="14" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <style>
+    .hop, .spin, .look, .pupil { animation: 13200ms ease-in-out infinite; }
+    .hop   { animation-name: hop; }
+    .spin  { animation-name: spin; transform-origin: 1375px 711px; }
+    .look  { animation-name: look; }
+    .pupil { animation-name: blink; transform-box: fill-box; transform-origin: center; }
+    @keyframes hop {
+    0.00% { transform: translateY(-4px); }
+    4.55% { transform: translateY(-6px); }
+    9.09% { transform: translateY(-4px); }
+    13.64% { transform: translateY(4px); }
+    16.97% { transform: translateY(10px); }
+    18.18% { transform: translateY(-34px); }
+    19.39% { transform: translateY(-154px); }
+    20.61% { transform: translateY(-220px); }
+    22.42% { transform: translateY(-250px); }
+    25.45% { transform: translateY(-250px); }
+    26.67% { transform: translateY(-182px); }
+    27.88% { transform: translateY(-26px); }
+    29.09% { transform: translateY(20px); }
+    30.30% { transform: translateY(30px); }
+    31.52% { transform: translateY(-34px); }
+    33.33% { transform: translateY(-90px); }
+    33.94% { transform: translateY(-90px); }
+    35.15% { transform: translateY(-62px); }
+    36.97% { transform: translateY(14px); }
+    38.18% { transform: translateY(18px); }
+    42.42% { transform: translateY(10px); }
+    48.48% { transform: translateY(0px); }
+    53.03% { transform: translateY(-6px); }
+    60.61% { transform: translateY(0px); }
+    66.67% { transform: translateY(10px); }
+    70.45% { transform: translateY(6px); }
+    76.97% { transform: translateY(-4px); }
+    78.18% { transform: translateY(-48px); }
+    78.79% { transform: translateY(-46px); }
+    79.39% { transform: translateY(16px); }
+    80.00% { transform: translateY(24px); }
+    80.61% { transform: translateY(-8px); }
+    81.21% { transform: translateY(-12px); }
+    81.82% { transform: translateY(8px); }
+    83.33% { transform: translateY(10px); }
+    90.91% { transform: translateY(-2px); }
+    96.97% { transform: translateY(-6px); }
+    100.00% { transform: translateY(-4px); }
+    }
+    @keyframes spin {
+    0.00% { transform: rotate(0deg); }
+    23.03% { transform: rotate(0deg); }
+    25.45% { transform: rotate(360deg); }
+    100.00% { transform: rotate(360deg); }
+    }
+    @keyframes look {
+    0.00% { transform: translate(-7px, -9px); }
+    16.67% { transform: translate(-3px, -8px); }
+    18.18% { transform: translate(-1px, -9px); }
+    22.73% { transform: translate(-1px, -9px); }
+    23.03% { transform: translate(-6px, -12px); }
+    23.64% { transform: translate(8px, -3px); }
+    24.24% { transform: translate(2px, 8px); }
+    24.85% { transform: translate(-12px, -6px); }
+    26.06% { transform: translate(0px, -7px); }
+    36.97% { transform: translate(-6px, -5px); }
+    39.39% { transform: translate(-8px, -3px); }
+    46.21% { transform: translate(-10px, 1px); }
+    49.70% { transform: translate(-13px, 1px); }
+    60.61% { transform: translate(-13px, 1px); }
+    62.88% { transform: translate(-10px, 1px); }
+    72.73% { transform: translate(-10px, 2px); }
+    75.00% { transform: translate(-13px, 0px); }
+    77.27% { transform: translate(-12px, 2px); }
+    85.61% { transform: translate(-10px, 2px); }
+    87.88% { transform: translate(-12px, 1px); }
+    93.94% { transform: translate(-13px, 1px); }
+    96.97% { transform: translate(-12px, 0px); }
+    100.00% { transform: translate(-7px, -9px); }
+    }
+    @keyframes blink {
+    0.00% { transform: scaleY(1); }
+    31.82% { transform: scaleY(1); }
+    33.33% { transform: scaleY(0.1); }
+    34.55% { transform: scaleY(0.1); }
+    35.76% { transform: scaleY(1); }
+    46.97% { transform: scaleY(1); }
+    47.88% { transform: scaleY(0.1); }
+    48.48% { transform: scaleY(0.1); }
+    49.70% { transform: scaleY(1); }
+    89.39% { transform: scaleY(1); }
+    90.91% { transform: scaleY(0.1); }
+    91.52% { transform: scaleY(0.1); }
+    93.03% { transform: scaleY(1); }
+    100.00% { transform: scaleY(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hop, .spin, .look, .pupil { animation: none; }
+    }
+  </style>
+  <rect width="1598" height="944" fill="#eeeceb"/>
+  <g class="hop">
+    <g class="spin">
+      <polygon points="1375.0,575.0 1412.6,659.2 1504.3,669.0 1435.9,730.8 1454.9,821.0 1375.0,775.0 1295.1,821.0 1314.1,730.8 1245.7,669.0 1337.4,659.2" fill="url(#body)" stroke="url(#body)" stroke-width="14" stroke-linejoin="round"/>
+      <circle cx="1378" cy="656" r="95" fill="url(#glow)" mask="url(#shape)"/>
+      <circle cx="1345" cy="704" r="33" fill="#fff"/><circle cx="1407" cy="706" r="33" fill="#fff"/>
+      <g class="look">
+        <circle class="pupil" cx="1345" cy="704" r="20" fill="#131213"/><circle class="pupil" cx="1407" cy="706" r="20" fill="#131213"/>
+      </g>
+    </g>
+  </g>
+</svg>
