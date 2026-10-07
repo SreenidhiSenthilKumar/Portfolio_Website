@@ -26,7 +26,7 @@ const PROJECTS = [
     blurb: "a kombucha bar for day drinking",
     categories: "Branding, Visual Identity, Packaging Design, Merchandise Design",
     year: "2026",
-    tools: "Illustrator, Photoshop and Indesign",
+    tools: "Illustrator, Photoshop, Indesign and Blender",
     info: "Fego is a modern kombucha bar serving up unique, creative drinks. We've taken the ultimate gut-healthy beverage and given it a fresh spin, offering a new, wellness-focused approach to day drinking.",
     challenge: "Kombucha is often perceived as a niche, health-focused wellness drink, making it difficult to establish a lively, social day-drinking bar culture around it. The key challenge was to design a bold, vibrant brand identity that breaks away from traditional health-food visual tropes while capturing the playful, fizzy energy of a modern day-drinking spot.",
     solution: "Instead of leaning on leafy greens and wellness cues, FEGO borrows the language of a night out and moves it into the daytime. The pixelated wordmark mimics the wrinkled, uneven texture of a scoby, giving the brand a playful, digital edge rooted in how kombucha is actually made. The silhouette of a kombucha brewing jar becomes the shape of the glasses and the brand's other silhouettes, so every drink feels like the centrepiece, and the “So Good You Sparkle” tagline turns fizz into a personality. Deep plum keeps it bold and social while soft mint nods to the fresh, fermented drink inside, and scattered sparkle elements tie it all together, so the brand feels just as at home on a can or a menu as it does on a poster, a tee or an Instagram story.",
