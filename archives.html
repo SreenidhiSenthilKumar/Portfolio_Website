@@ -3,23 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archives | Sreenidhi Senthil Kumar</title>
-  <link rel="icon" href="assets/b7XOCkHBL5aJcRCYLvDpe4BL3IE.png">
+  <title>Play | Sreenidhi Senthil Kumar</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@700&family=Google+Sans+Flex:wght@100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="section">
-    <h1 class="page-title">The<br>archives</h1>
-    <div class="archive-grid">
-      <figure><img src="assets/iteqYMvejqnslith0s26TS1F2E.jpg" alt=""></figure>
-      <figure><img src="assets/ExXhnBPEe5yBYsxKhSoffXj8URw.jpg" alt="" loading="lazy"></figure>
-      <figure><img src="assets/FjMsBXkrXPVsdOm6QN0yajlVPeY.jpg" alt="" loading="lazy"></figure>
-      <figure><img src="assets/UBSpaoSG1ymjVrYPM6NSuLoGI.jpg" alt="" loading="lazy"></figure>
-      <figure><img src="assets/21SZHnLjV2QIMmvtn4HHXrSJW4.png" alt="" loading="lazy"></figure>
-    </div>
+  <main class="play">
+    <svg class="pot" viewBox="0 -8 24 27" shape-rendering="crispEdges" role="img" aria-label="A pixel cooking pot rattling on the stove">
+      <defs>
+        <pattern id="pot-dither" width="2" height="2" patternUnits="userSpaceOnUse">
+          <rect width="2" height="2" class="pot__ink"/>
+          <rect width="1" height="1" class="pot__gap"/>
+          <rect x="1" y="1" width="1" height="1" class="pot__gap"/>
+        </pattern>
+      </defs>
+      <g class="pot__steam">
+        <rect x="6" y="-3" width="1" height="1"/>
+        <rect x="12" y="-4" width="1" height="1"/>
+        <rect x="17" y="-3" width="1" height="1"/>
+      </g>
+      <g class="pot__lid">
+        <rect class="pot__ink" x="10" y="0" width="4" height="1"/>
+        <rect class="pot__ink" x="10" y="1" width="1" height="2"/>
+        <rect class="pot__ink" x="13" y="1" width="1" height="2"/>
+        <rect class="pot__ink" x="2" y="3" width="20" height="1"/>
+      </g>
+      <g class="pot__body">
+        <rect class="pot__ink" x="1" y="5" width="22" height="1"/>
+        <rect class="pot__ink" x="3" y="6" width="18" height="12"/>
+        <rect x="5" y="6" width="3" height="12" fill="url(#pot-dither)"/>
+        <rect class="pot__gap" x="14" y="10" width="5" height="1"/>
+        <rect class="pot__gap" x="18" y="9" width="1" height="1"/>
+      </g>
+    </svg>
+    <h1 class="play__title">Cooking something new</h1>
+    <p class="play__sub">Come back soon</p>
   </main>
   <script src="main.js"></script>
 </body>

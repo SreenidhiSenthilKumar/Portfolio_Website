@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1598 944" width="1598" height="944">
   <title>Cue opener</title>
   <defs>
+    <!-- Soft background gradient in Cue's palette: lavender, pink, peach -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6e0f7"/>
+      <stop offset=".5" stop-color="#f6dfe9"/>
+      <stop offset="1" stop-color="#fde5cf"/>
+    </linearGradient>
     <linearGradient id="body" gradientUnits="userSpaceOnUse" x1="1375" y1="561" x2="1375" y2="836">
       <stop offset="0" stop-color="#9aa9d4"/>
       <stop offset=".45" stop-color="#b0959f"/>
@@ -111,7 +117,7 @@
       .hop, .spin, .look, .pupil { animation: none; }
     }
   </style>
-  <rect width="1598" height="944" fill="#eeeceb"/>
+  <rect width="1598" height="944" fill="url(#bg)"/>
   <g class="hop">
     <g class="spin">
       <polygon points="1375.0,575.0 1412.6,659.2 1504.3,669.0 1435.9,730.8 1454.9,821.0 1375.0,775.0 1295.1,821.0 1314.1,730.8 1245.7,669.0 1337.4,659.2" fill="url(#body)" stroke="url(#body)" stroke-width="14" stroke-linejoin="round"/>
