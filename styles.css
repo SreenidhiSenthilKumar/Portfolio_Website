@@ -1535,3 +1535,8 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 @media (max-width: 809.98px) { .home-page .hero .inspire { inset: 110px 0 40px; } }
 /* Caption stays in front of the spinning logo */
 .inspire__caption { z-index: 6; }
+/* Folder layer sits above the name so dragged-out icons land in front of it;
+   only the folder and the icons themselves catch clicks */
+.home-page .hero .inspire { z-index: 3; pointer-events: none; }
+.home-page .hero .box,
+.home-page .hero .inspire > .inspire__item { pointer-events: auto; }
