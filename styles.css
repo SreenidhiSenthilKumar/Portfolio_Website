@@ -1787,3 +1787,25 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 .inspire__caption { transition: bottom .5s ease; }
 .inspire { --bw: clamp(220px, 26vw, 400px); }
 .inspire.is-opened .inspire__caption { bottom: calc(var(--bw) * .88 + 20px); }
+
+/* Folder in the logo's style: smooth rounded shape, grainy glow from white to pink */
+.box__label { color: #fff; }
+/* "Click" in a bubble, centred on the folder's front */
+.box__label { display: flex; justify-content: center; font-size: calc(var(--bw) * .07); }
+.box__bubble {
+  padding: .45em .8em .4em;
+  border-radius: 999px;
+  background: #fcc0df;
+  color: var(--maroon);
+  white-space: nowrap;
+}
+/* ...tilted, sitting on the folder's top-right corner like a sticker */
+.box__label { left: auto; right: 10%; top: 44%; justify-content: flex-end; rotate: 12deg; }
+/* Logo behind the folder spins slowly, like the footer flower */
+.inspire__logo { animation: footer-spin 20s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .inspire__logo { animation: none; } }
+/* Intro sits just under the name */
+.home-page .hero__block { justify-content: flex-start; gap: 32px; }
+@media (max-width: 809.98px) { .home-page .hero .inspire { inset: 110px 0 40px; } }
+/* Caption stays in front of the spinning logo */
+.inspire__caption { z-index: 6; }
