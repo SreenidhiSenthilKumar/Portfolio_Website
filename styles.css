@@ -37,7 +37,7 @@ img { display: block; max-width: 100%; }
 .page-title {
   font-size: 64px;
   font-weight: 500;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.04em;
   line-height: 1;
   text-transform: capitalize;
 }
@@ -125,74 +125,6 @@ img { display: block; max-width: 100%; }
 .menu a:hover { color: var(--pink); }
 .menu-open .menu { opacity: 1; pointer-events: auto; }
 
-/* ---------- Home: hello ----------
-   Centred on maroon like the original landing: dotted name, glowing flower,
-   with icons of what inspires the work floating around the edges. */
-.hello {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 190px clamp(20px, 3.5vw, 60px) 90px;
-  overflow: hidden;
-  background: var(--cream);
-  color: var(--maroon);
-  letter-spacing: -0.02em;
-}
-.hello__content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  max-width: 1100px;
-  text-align: center;
-  pointer-events: none;
-}
-.hello__content a { pointer-events: auto; }
-.hello__hi { font-size: clamp(18px, 1.7vw, 24px); }
-.hello__name {
-  font-family: "Doto", sans-serif;
-  font-size: clamp(18px, 5vw, 96px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  white-space: nowrap;
-}
-.hello__name span {
-  display: inline-block;
-  opacity: 0;
-  filter: blur(10px);
-  transform: translateY(10px) scale(.95);
-  animation: hello-in .9s cubic-bezier(.2, .7, .2, 1) forwards;
-}
-.hello__name span:nth-child(2) { animation-delay: .15s; }
-.hello__name span:nth-child(3) { animation-delay: .3s; }
-@keyframes hello-in { to { opacity: 1; filter: blur(0); transform: none; } }
-.hello__role { font-size: clamp(24px, 2.8vw, 44px); font-weight: 600; line-height: 1.15; }
-.hello__blank {
-  display: inline-block;
-  min-width: 6.5em;
-  padding-bottom: .04em;
-  border-bottom: .06em solid currentColor;
-  color: var(--pink);
-  text-align: left;
-}
-.hello__caret {
-  display: inline-block;
-  width: .06em;
-  height: .9em;
-  margin-left: .04em;
-  vertical-align: -.08em;
-  background: currentColor;
-  animation: hello-caret 1s steps(2) infinite;
-}
-@keyframes hello-caret { 50% { opacity: 0; } }
-.hello__focus { display: flex; flex-direction: column; gap: 4px; margin-top: 28px; font-size: clamp(17px, 1.5vw, 22px); }
-.hello__inspire { margin-top: 26px; font-size: clamp(15px, 1.2vw, 18px); opacity: .8; }
-
 /* Floating icons around the edges, each with a speech bubble on hover */
 .inspire { position: absolute; inset: 150px 0 40px; z-index: 1; }
 .inspire__item {
@@ -205,7 +137,6 @@ img { display: block; max-width: 100%; }
   color: var(--maroon);
   cursor: pointer;
   translate: -50% -50%;
-  animation: inspire-float var(--d) ease-in-out var(--t) infinite;
 }
 .inspire__icon {
   display: block;
@@ -261,17 +192,8 @@ img { display: block; max-width: 100%; }
 .inspire__item:focus-visible::before,
 .inspire__item.is-open::before { opacity: 1; }
 /* A wide, lazy drift so the icons wander around their spot */
-@keyframes inspire-float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  20% { transform: translate(18px, -14px) rotate(7deg); }
-  45% { transform: translate(-6px, -24px) rotate(-5deg); }
-  70% { transform: translate(-18px, 4px) rotate(4deg); }
-  85% { transform: translate(-6px, 14px) rotate(-3deg); }
-}
 
 @media (max-width: 809.98px) {
-  .hello { padding: 150px 16px 80px; }
-  .hello__blank { min-width: 0; }
   .inspire { inset: 104px 0 34px; }
   .inspire__icon { width: 30px; }
   .inspire__item { left: var(--mx); top: var(--my); padding: 6px; }
@@ -279,8 +201,6 @@ img { display: block; max-width: 100%; }
 
 /* Home page: full black, pink name and accents */
 .home-page { background: var(--black); }
-.home-page .hello { background: var(--black); color: var(--cream); }
-.home-page .hello__blank { color: var(--pink); }
 .home-page .inspire__item { color: var(--cream); }
 .home-page .inspire__item:hover,
 .home-page .inspire__item:focus-visible { color: var(--pink); }
@@ -500,35 +420,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 @media (max-width: 1099.98px) { .cv__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 809.98px) { .cv__grid { grid-template-columns: 1fr; gap: 40px; } }
 
-.stickers {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 480px;
-  overflow: hidden;
-  touch-action: none;
-}
-
-.sticker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 26px 36px;
-  border-radius: 999px;
-  background: var(--maroon);
-  color: var(--cream);
-  font-size: 27px;
-  font-weight: 500;
-  letter-spacing: -0.06em;
-  white-space: nowrap;
-  cursor: grab;
-  user-select: none;
-  will-change: transform;
-}
-.sticker:nth-child(3n + 2) { background: var(--pink); }
-.sticker:nth-child(4n) { border-radius: 40px; }
-.sticker.dragging { cursor: grabbing; }
 
 /* ---------- Project ----------
    Measured from the FEGO page design (1728px wide). */
@@ -541,7 +432,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   color: var(--p-ink);
   letter-spacing: -0.01em;
 }
-
 
 .project-hero { display: flex; flex-direction: column; gap: 45px; padding: 180px var(--pad) 0; }
 .project-hero__titles { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
@@ -907,40 +797,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 .cue-theme[data-theme="dark"] .is-light { opacity: 0; }
 .cue-theme[data-theme="dark"] .is-dark { opacity: 1; }
 
-/* Moments: gradient panels like Cue's prompt cards */
-.cue-moment {
-  display: grid;
-  grid-template-columns: minmax(260px, 1fr) 2fr;
-  align-items: center;
-  gap: 40px;
-  padding: 56px;
-}
-.cue-moment--research { background: var(--g-research); }
-.cue-moment--marketing { background: var(--g-marketing); }
-.cue-moment--coding { background: var(--g-coding); }
-.cue-moment .cue-chip { background: rgba(255, 255, 255, .55); border: 1px solid rgba(17, 17, 16, .5); }
-.cue-moment.is-flipped { grid-template-columns: 2fr minmax(260px, 1fr); }
-.cue-moment.is-flipped .cue-head { order: 2; }
-.cue-moment__devices { position: relative; padding-right: 12%; }
-.cue-moment__mac { width: 100%; filter: drop-shadow(0 30px 40px rgba(17, 17, 16, .25)); }
-.cue-moment__phone { position: absolute; right: 0; bottom: -4%; width: 24%; filter: drop-shadow(0 20px 30px rgba(17, 17, 16, .3)); }
-
-/* Moods: a strip of phone screens on black */
-.cue-moods { display: flex; flex-direction: column; gap: 40px; padding: 56px 0 56px 56px; background: #000; color: #fff; }
-.cue-strip { display: flex; gap: 20px; padding-right: 56px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.cue-strip::-webkit-scrollbar { display: none; }
-.cue-screen { flex: 0 0 auto; width: 240px; scroll-snap-align: start; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-.cue-screen img { width: 100%; border-radius: 4px; }
-
-/* Iterations */
-.cue-iterate { display: flex; flex-direction: column; gap: 32px; padding: 56px; background: var(--cue-cream); }
-.cue-navs { display: flex; flex-direction: column; gap: 10px; }
-.cue-navs figure { border-radius: 4px; overflow: hidden; box-shadow: 0 1px 0 rgba(17, 17, 16, .08); }
-.cue-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.cue-step { display: flex; flex-direction: column; gap: 12px; }
-.cue-step img { border-radius: 4px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
-.cue-step__n { font-size: 15px; opacity: .55; }
-
 /* Walkthrough */
 .cue-action { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; }
 .cue-action video { width: 100%; border-radius: 4px; }
@@ -1133,13 +989,9 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 
 @media (max-width: 809.98px) {
   .cue > section:not(.cue-stage) { padding: 32px 22px; border-radius: 4px; }
-  .cue-moods { padding-right: 0 !important; }
-  .cue-stage__row, .cue-moment, .cue-moment.is-flipped { grid-template-columns: 1fr; }
-  .cue-moment.is-flipped .cue-head { order: 0; }
+  .cue-stage__row { grid-template-columns: 1fr; }
   .cue-hello { padding: 28px 22px; min-height: 380px; }
   .cue-theme__bar { flex-direction: column; align-items: flex-start; }
-  .cue-steps { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .cue-screen { width: 190px; }
 }
 
 /* ---------- Book of Sands layout ----------
@@ -1181,7 +1033,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   color: var(--sand-ink);
 }
 .sand-hands__head { display: flex; flex-direction: column; align-items: center; gap: 26px; max-width: 820px; text-align: center; }
-.sand-kicker { font-size: 14px; }
 /* Kicker sitting on the white page above the frame */
 .sand-title {
   font-family: var(--sand-display);
@@ -1360,7 +1211,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   .nav__links { display: none; }
   .nav__toggle { display: block; }
 
-
   .page-title { font-size: 48px; }
 
   .work-grid { grid-template-columns: 1fr; }
@@ -1368,8 +1218,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   .about__row { flex-direction: column-reverse; }
   .about__image { width: 100%; max-width: 440px; }
   .about__bio { font-size: 20px; }
-  .stickers { height: 400px; }
-  .sticker { font-size: 18px; padding: 16px 24px; }
 
   .nav { height: 110px; padding-top: 30px; }
   .project-hero { padding-top: 130px; gap: 28px; }
@@ -1427,8 +1275,7 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   color: var(--cream);
   text-wrap: balance;
 }
-.hero__name span,
-.hero__flower {
+.hero__name span {
   display: inline-block;
   opacity: 0;
   filter: blur(10px);
@@ -1437,21 +1284,13 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 }
 .hero__name span:nth-child(2) { animation-delay: .15s; }
 .hero__name span:nth-child(3) { animation-delay: .3s; }
-.hero__flower { animation-delay: .5s; }
 @keyframes blur-in { to { opacity: 1; filter: blur(0); transform: none; } }
-.hero__flower img {
-  width: 208px;
-  aspect-ratio: 1;
-  transition: transform .8s cubic-bezier(.2, .7, .2, 1);
-}
-.hero__flower:hover img { transform: rotate(90deg) scale(1.05); }
 @media (max-width: 1199.98px) {
   .hero__block { top: 5%; height: 96%; }
 }
 @media (max-width: 809.98px) {
   .hero__block { top: 6.6%; height: 93%; }
   .hero__name { font-size: 45px; }
-  .hero__flower img { width: 148px; }
 }
 .hero__intro {
   display: flex;
@@ -1496,16 +1335,9 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 }
 /* Whole home page is maroon: the block fills the screen behind the header */
 .home-page .hero__block { top: 0; height: 100%; padding-top: 140px; }
-.home-page .hero .inspire { inset: 200px 0 50px; }
-@media (max-width: 809.98px) {
-  .home-page .hero__block { padding-top: 110px; }
-  .home-page .hero .inspire { inset: 150px 0 30px; }
-}
 /* Home hierarchy: the name on top, the intro sentence at the bottom of the block */
 .home-page .hero__block {
-  justify-content: space-between;
   align-items: stretch;
-  gap: clamp(20px, 2.4vw, 40px);
   padding: 140px clamp(20px, 3.5vw, 60px) clamp(18px, 2.4vw, 40px);
 }
 .home-page .hero__intro {
@@ -1519,59 +1351,20 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   animation-delay: 0s;
 }
 .home-page .hero__name {
-  font-family: var(--font);
-  font-size: 9.4vw;
-  font-weight: 600;
-  letter-spacing: -0.065em;
-  line-height: .82;
   text-align: left;
-  text-transform: none;
   white-space: nowrap;
-  margin-left: -0.05em;
 }
 .home-page .hero__name span:nth-child(1) { animation-delay: .2s; }
 .home-page .hero__name span:nth-child(2) { animation-delay: .35s; }
 .home-page .hero__name span:nth-child(3) { animation-delay: .5s; }
 /* Icons float in the open space above the text */
-.home-page .hero .inspire { inset: 150px 0 calc(9.4vw + 13vw + 60px); }
 @media (max-width: 809.98px) {
   .home-page .hero__block { padding-top: 110px; }
-  .home-page .hero__name { font-size: 9.4vw; }
-  .home-page .hero .inspire { inset: 110px 0 calc(9.4vw + 160px); }
 }
 /* Name back in the dotted pixel face, still filling the width */
 .home-page .hero__name {
-  font-family: "Doto", sans-serif;
-  font-weight: 700;
-  font-size: 7.6vw;
-  letter-spacing: -0.04em;
-  line-height: .9;
   margin-left: -0.04em;
 }
-.home-page .hero__name { font-size: 7.15vw; word-spacing: -0.3em; }
-.home-page .hero__name { font-size: 7.6vw; }
-/* Name in Pixelify Sans: a solid, blocky pixel face */
-.home-page .hero__name {
-  font-family: "Pixelify Sans", sans-serif;
-  font-weight: 600;
-  font-size: 10vw;
-  letter-spacing: -0.02em;
-  word-spacing: 0;
-  line-height: .85;
-}
-.home-page .hero__name { font-size: 8.2vw; }
-/* Name in Silkscreen, all caps */
-.home-page .hero__name {
-  font-family: "Silkscreen", sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 6vw;
-  letter-spacing: -0.04em;
-  word-spacing: -0.2em;
-  line-height: .85;
-}
-.home-page .hero__name { font-size: 5.25vw; }
-.home-page .hero__name { font-size: 5.55vw; }
 /* Name back in the original dotted pixel face (Doto), all caps, in pink */
 .home-page .hero__name {
   font-family: "Doto", sans-serif;
@@ -1587,10 +1380,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 /* Caption sitting in the middle of the floating icons */
 .inspire__caption {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
-  width: min(420px, 60%);
   text-align: center;
   color: rgba(246, 245, 239, .6);
   font-size: clamp(15px, 1.25vw, 19px);
@@ -1598,13 +1387,12 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   line-height: 1.35;
   pointer-events: none;
 }
-.inspire__caption { width: min(360px, 60%); text-wrap: balance; }
+.inspire__caption { text-wrap: balance; }
 /* Bottom-aligned with the description sentence, not floating above it */
 .home-page .hero .inspire { inset: 140px 0 clamp(16px, 2.6vw, 40px); }
 /* Phones: name stacks big over three lines; folder sits above the intro text instead of on it */
 @media (max-width: 809.98px) {
   .home-page .hero__name { font-size: 15vw; white-space: normal; line-height: .95; }
-  .home-page .hero .inspire { inset: 110px 0 170px; }
 }
 
 /* Pink logo peeking out from behind the folder's top-left corner, slightly turned */
@@ -1625,75 +1413,26 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 .inspire__item { animation: none; }
 
 /* ---------- Cardboard box of inspirations ---------- */
-.inspire { --bw: clamp(250px, 28vw, 440px); }
-.inspire__caption { top: auto; bottom: calc(var(--bw) * .545 + 18px); translate: -50% 0; }
-.inspire__hint { display: block; margin-top: 6px; color: var(--cream); opacity: .9; }
+.inspire__caption { top: auto; }
 
 .box {
   position: absolute;
-  left: 50%;
   bottom: 0;
   width: var(--bw);
-  aspect-ratio: 220 / 120;
-  translate: -50% 0;
 }
 .box__back, .box__front, .box__inside { position: absolute; inset: 0; width: 100%; height: 100%; }
 .box__back { z-index: 1; }
-.box__inside { z-index: 2; }
 .box__front { z-index: 3; pointer-events: none; }
 .box svg { overflow: visible; }
-.box__card { fill: #c9955d; stroke: #5e3818; stroke-width: 2.5; stroke-linejoin: miter; }
-.box__card--light { fill: #d9ab72; }
-.box__inner { fill: #6e4320; stroke: #5e3818; stroke-width: 2.5; }
-.box__rim { fill: #b07c45; }
-.box__tape { fill: #ead1a0; opacity: .9; }
-.box__stamp { fill: #5e3818; font: 700 12px "Doto", monospace; letter-spacing: .02em; opacity: .85; }
-.box__card, .box__inner { pointer-events: none; }
 
 /* Icons in the box: slightly smaller, tilted, tucked behind the front */
 .inspire__item { touch-action: none; transition: rotate .5s cubic-bezier(.2, .9, .25, 1.2); }
-.inspire__item.is-boxed .inspire__icon { width: clamp(38px, 3.9vw, 64px); }
 .inspire__item.is-front { z-index: 1; }
 .inspire__item.is-out { z-index: 4; }
-.inspire__item.is-dragging { z-index: 10; cursor: grabbing; }
+.inspire__item.is-dragging { z-index: 10 !important; cursor: grabbing; }
 .inspire__item.is-dragging .inspire__icon { transform: scale(1.15); }
 .inspire__item.is-dragging::after,
 .inspire__item.is-dragging::before { opacity: 0 !important; }
-.inspire__item.is-boxed:hover .inspire__icon { transform: translateY(-10px) scale(1.08); }
-.inspire { --bw: clamp(280px, 34vw, 540px); }
-/* Square pink box, no label */
-.inspire { --bw: clamp(220px, 22vw, 340px); }
-.box { aspect-ratio: 1; }
-.inspire__caption { bottom: calc(var(--bw) * .93 + 18px); }
-.box__card { fill: #f0a3bd; stroke: #4f0c20; }
-.box__card--light { fill: #f7c1d3; }
-.box__inner { fill: #a8365a; stroke: #4f0c20; }
-.box__rim { fill: #d97e9e; }
-.box__tape { fill: #fde0ea; }
-.inspire__item.is-boxed .inspire__icon { width: clamp(34px, 3.2vw, 52px); }
-.inspire__item.is-dragging { z-index: 10 !important; }
-.inspire { --bw: clamp(220px, 25vw, 380px); }
-.inspire__item.is-boxed .inspire__icon { width: clamp(36px, 3.7vw, 58px); }
-.inspire__caption { bottom: calc(var(--bw) + 34px); }
-/* Folder instead of a box: pink back with a tab, front flap over the icons */
-.inspire { --bw: clamp(260px, 30vw, 460px); }
-.box { aspect-ratio: 240 / 180; }
-.inspire__caption { bottom: calc(var(--bw) * .75 + 26px); }
-.box__card--back { fill: #d97e9e; }
-.box__rim { fill: #f7c1d3; }
-
-/* Pixel folder (stepped corners, dark outline) */
-.inspire { --bw: clamp(260px, 29vw, 440px); }
-.box { aspect-ratio: 42 / 33; }
-.inspire__caption { bottom: calc(var(--bw) * .786 + 22px); }
-.box svg polygon { stroke: #1f0a10; stroke-width: 1; stroke-linejoin: miter; }
-.fold__back { fill: #e98aab; }
-.fold__tab-hi { fill: #f8c7d8; }
-.fold__back-lo { fill: #cf6f92; }
-.fold__front { fill: #f5aac3; }
-.fold__front-hi { fill: #fde0ea; }
-.fold__front-lo { fill: #e48aa8; }
-.fold__front-lo2 { fill: #cf6f92; }
 
 /* Filled icons: coloured fill under a dark pixel outline */
 .hero .inspire__icon {
@@ -1718,12 +1457,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   -webkit-mask: var(--src) center / contain no-repeat;
   mask: var(--src) center / contain no-repeat;
 }
-/* Icons sit inside the folder, on its front, and are bigger */
-.inspire { --bw: clamp(280px, 32vw, 480px); }
-.box__inside { z-index: 4; }
-.inspire__caption { bottom: calc(var(--bw) * .786 + 22px); }
-.hero .inspire__icon { width: clamp(50px, 5.2vw, 88px); }
-.inspire__item.is-boxed .inspire__icon { width: clamp(42px, 4.6vw, 74px); }
 .inspire__item.is-boxed:hover .inspire__icon { transform: translateY(-6px) scale(1.1); }
 /* Icons hidden inside the folder: click the folder to pull them out */
 .box { cursor: pointer; transition: transform .25s cubic-bezier(.34, 1.56, .64, 1); }
@@ -1736,37 +1469,26 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 /* Hovering the folder lets the tops peek out */
 .box:hover .inspire__item.is-boxed .inspire__icon { transform: translateY(-85%); }
 .box:hover .inspire__item.is-front .inspire__icon { transform: translateY(-60%); }
-
-/* Smooth yellow folder (rounded, with a sheet of paper peeking out) */
-.box { aspect-ratio: 240 / 190; filter: drop-shadow(0 10px 18px rgba(40, 0, 12, .25)); }
-.inspire__caption { bottom: calc(var(--bw) * .8 + 20px); }
 /* The caption appears once the folder has been clicked; until then only the hint shows */
 .inspire__lead { display: block; color: #fff; opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
-.inspire__hint { transition: opacity .3s ease; }
 .inspire.is-opened .inspire__lead { opacity: 1; transform: none; }
-.inspire.is-opened .inspire__hint { opacity: 0; }
 /* Pixel-art folder to match the icons */
 .box { aspect-ratio: 40 / 30; filter: none; }
 .inspire__caption { bottom: calc(var(--bw) * .75 + 20px); }
 /* "Click folder" written on the front of the folder */
 .box__label {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 62%;
   z-index: 5;
   translate: 0 -50%;
   text-align: center;
-  color: #fff;
   font: 700 calc(var(--bw) * .075) / 1 "Doto", monospace;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   pointer-events: none;
   transition: opacity .3s ease;
 }
-.inspire.is-opened .box__label { opacity: .55; }
 /* Folder tucked into the bottom-right corner, caption and reset link with it */
-.inspire { --bw: clamp(200px, 22vw, 340px); --edge: clamp(20px, 3.5vw, 60px); }
+.inspire { --edge: clamp(20px, 3.5vw, 60px); }
 .box { left: auto; right: var(--edge); translate: none; }
 .inspire__caption { left: auto; right: var(--edge); translate: none; width: max(var(--bw), 260px); }
 /* Bigger icons */
@@ -1782,16 +1504,22 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
 .inspire.is-opened .box:hover { transform: none; }
 .inspire__drag { display: block; margin-top: 6px; color: #8c8c8c; opacity: 0; transition: opacity .5s ease .2s; }
 .inspire.is-opened .inspire__drag { opacity: 1; }
-/* Leave room for the risen icons above the folder */
-.inspire.is-opened .inspire__caption { bottom: calc(var(--bw) * .75 + var(--bw) * .32 + 20px); }
 .inspire__caption { transition: bottom .5s ease; }
 .inspire { --bw: clamp(220px, 26vw, 400px); }
+/* Leave room for the risen icons above the folder */
 .inspire.is-opened .inspire__caption { bottom: calc(var(--bw) * .88 + 20px); }
 
-/* Folder in the logo's style: smooth rounded shape, grainy glow from white to pink */
-.box__label { color: #fff; }
-/* "Click" in a bubble, centred on the folder's front */
-.box__label { display: flex; justify-content: center; font-size: calc(var(--bw) * .07); }
+/* "Click" in a tilted bubble on the folder's top-right */
+.box__label {
+  left: auto;
+  right: 10%;
+  top: 44%;
+  display: flex;
+  justify-content: flex-end;
+  rotate: 12deg;
+  color: #fff;
+  font-size: calc(var(--bw) * .07);
+}
 .box__bubble {
   padding: .45em .8em .4em;
   border-radius: 999px;
@@ -1799,8 +1527,6 @@ body [data-pin] { position: sticky; top: 0; z-index: 0; }
   color: var(--maroon);
   white-space: nowrap;
 }
-/* ...tilted, sitting on the folder's top-right corner like a sticker */
-.box__label { left: auto; right: 10%; top: 44%; justify-content: flex-end; rotate: 12deg; }
 /* Logo behind the folder spins slowly, like the footer flower */
 .inspire__logo { animation: footer-spin 20s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .inspire__logo { animation: none; } }

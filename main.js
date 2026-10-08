@@ -180,8 +180,6 @@ const PROJECTS = [
   },
 ];
 
-const SKILLS = ["TIME MANAGEMENT", "SELF-MOTIVATED", "AMBITIOUS", "PROBLEM-SOLVING", "CREATIVE", "EMPATHETIC", "LEADERSHIP"];
-
 // ---------- Helpers ----------
 const roll = (text) => `<span class="roll"><span>${text}</span><span aria-hidden="true">${text}</span></span>`;
 
@@ -236,9 +234,8 @@ const coverMedia = (name, alt) => name.endsWith(".mp4")
   ? `<video src="${img(name)}" autoplay muted loop playsinline preload="metadata" aria-label="${escape(alt)}"></video>`
   : `<img src="${img(name)}" alt="${escape(alt)}" loading="lazy">`;
 
-// archived: true moves a project from the Work grid to the Archives page
-function renderWork(grid, archived = false) {
-  grid.innerHTML = PROJECTS.filter((p) => !p.archived === !archived).map((p) => {
+function renderWork(grid) {
+  grid.innerHTML = PROJECTS.map((p) => {
     const overlay = p.subtitle || p.blurb;
     const inner = `
       <div class="card__media">
@@ -266,13 +263,14 @@ function renderWork(grid, archived = false) {
 // ---------- Home: selected work carousel ----------
 // An auto-scrolling strip of finished work, duplicated once so the loop is seamless.
 function renderSelected(track) {
-  const picks = PROJECTS.filter((p) => !p.archived && !p.comingSoon);
-  const cards = picks.map((p) => `
-    <a class="selected__card" href="project.html?p=${p.slug}">
+  const picks = PROJECTS.filter((p) => !p.comingSoon);
+  // The duplicate set is only there for the visual loop, so keyboards and screen readers skip it
+  const cards = (copy) => picks.map((p) => `
+    <a class="selected__card" href="project.html?p=${p.slug}"${copy ? ' tabindex="-1" aria-hidden="true"' : ""}>
       <span class="selected__media">${coverMedia(p.cover, p.title)}</span>
       <span class="label">${roll(escape(titleCase(p.title)))}</span>
     </a>`).join("");
-  track.innerHTML = `<div class="selected__list">${cards}${cards}</div>`;
+  track.innerHTML = `<div class="selected__list">${cards(false)}${cards(true)}</div>`;
 }
 
 // ---------- Project ----------
@@ -347,13 +345,10 @@ function renderProject(root) {
   if (soon) return renderComingSoon(root, soon);
 
   const ready = PROJECTS.filter((x) => !x.comingSoon);
-  const found = ready.find((x) => x.slug === slug) || ready[0];
-  // Previous / next stay within the same group (Work or Archives)
-  const group = ready.filter((x) => !x.archived === !found.archived);
-  const i = group.indexOf(found);
-  const p = found;
-  const prev = group[(i - 1 + group.length) % group.length];
-  const next = group[(i + 1) % group.length];
+  const p = ready.find((x) => x.slug === slug) || ready[0];
+  const i = ready.indexOf(p);
+  const prev = ready[(i - 1 + ready.length) % ready.length];
+  const next = ready[(i + 1) % ready.length];
   const name = titleCase(p.title);
   const layout = p.layout && window.CUSTOM_LAYOUTS ? window.CUSTOM_LAYOUTS[p.layout] : null;
 
@@ -483,74 +478,6 @@ function initFooterTicker(el) {
   setInterval(show, 4200);
 }
 
-// ---------- About: draggable skill stickers with light gravity ----------
-function initStickers(area) {
-  area.innerHTML = SKILLS.map((s) => `<div class="sticker">${s}</div>`).join("");
-
-  const bodies = [...area.children].map((el, n) => ({
-    el,
-    w: el.offsetWidth,
-    h: el.offsetHeight,
-    x: Math.min((area.clientWidth / SKILLS.length) * n, area.clientWidth - el.offsetWidth),
-    y: -el.offsetHeight - n * 90,
-    vx: 0,
-    vy: 0,
-    rot: Math.random() * 30 - 15,
-    held: false,
-  }));
-
-  const G = 0.6;
-  const BOUNCE = 0.35;
-  const FRICTION = 0.9;
-
-  function step() {
-    const W = area.clientWidth;
-    const H = area.clientHeight;
-    for (const b of bodies) {
-      if (!b.held) {
-        b.vy += G;
-        b.x += b.vx;
-        b.y += b.vy;
-        if (b.y + b.h > H) { b.y = H - b.h; b.vy *= -BOUNCE; b.vx *= FRICTION; }
-        if (b.x < 0) { b.x = 0; b.vx *= -BOUNCE; }
-        if (b.x + b.w > W) { b.x = W - b.w; b.vx *= -BOUNCE; }
-      }
-      b.el.style.transform = `translate(${b.x}px, ${b.y}px) rotate(${b.rot}deg)`;
-    }
-    requestAnimationFrame(step);
-  }
-
-  // Start dropping once the stickers scroll into view.
-  new IntersectionObserver((entries, obs) => {
-    if (entries[0].isIntersecting) { obs.disconnect(); step(); }
-  }, { threshold: 0.2 }).observe(area);
-
-  for (const b of bodies) {
-    let lastX, lastY, offX, offY;
-    b.el.addEventListener("pointerdown", (e) => {
-      b.el.setPointerCapture(e.pointerId);
-      b.held = true;
-      b.el.classList.add("dragging");
-      offX = e.clientX - b.x;
-      offY = e.clientY - b.y;
-      lastX = e.clientX;
-      lastY = e.clientY;
-    });
-    b.el.addEventListener("pointermove", (e) => {
-      if (!b.held) return;
-      b.vx = e.clientX - lastX;
-      b.vy = e.clientY - lastY;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      b.x = e.clientX - offX;
-      b.y = e.clientY - offY;
-    });
-    const release = () => { b.held = false; b.el.classList.remove("dragging"); };
-    b.el.addEventListener("pointerup", release);
-    b.el.addEventListener("pointercancel", release);
-  }
-}
-
 // ---------- Home: changing role ----------
 // "A ___ designer": the pink word types out, deletes, then types the next.
 // The article ("A" / "An") changes with the word so the sentence stays correct.
@@ -581,16 +508,11 @@ function initRole(root) {
   setTimeout(tick, 2200);
 }
 
-// Touch screens have no hover: tap an icon to show its bubble
+// Clicking an icon that is out of the folder shows its name; only one at a time
 function toggleBubble(root, item) {
   const open = item.classList.contains("is-open");
   root.querySelectorAll(".inspire__item.is-open").forEach((o) => o.classList.remove("is-open"));
   if (!open) item.classList.add("is-open");
-}
-
-function initInspire(root) {
-  if (root.querySelector(".box")) return initBox(root);
-  root.querySelectorAll(".inspire__item").forEach((item) => item.addEventListener("click", () => toggleBubble(root, item)));
 }
 
 // Icons start tucked in a folder. Drag one out and drop it anywhere,
@@ -691,17 +613,21 @@ function initBox(root) {
       el.style.top = p.y + "%";
     });
 
-    el.addEventListener("pointerup", (e) => {
+    // A cancelled drag (e.g. the browser takes over a touch) just leaves the icon where it is
+    const endDrag = (e, cancelled) => {
       if (!start) return;
       start = null;
       if (!dragged) return;
       el.classList.remove("is-dragging");
       el.style.transition = "";
+      if (cancelled) { dragged = false; return; }
       const b = box.getBoundingClientRect();
       if (e.clientX > b.left && e.clientX < b.right && e.clientY > b.top + b.height * .3 && e.clientY < b.bottom) {
         fly(el, () => packIn(el));
       }
-    });
+    };
+    el.addEventListener("pointerup", (e) => endDrag(e, false));
+    el.addEventListener("pointercancel", (e) => endDrag(e, true));
 
     // Click (or Enter/Space): pull a boxed icon out to its spot; otherwise show its bubble
     el.addEventListener("click", (e) => {
@@ -738,10 +664,10 @@ document.querySelectorAll("[data-social]").forEach((a) => (a.href = LINKS[a.data
 
 const role = document.querySelector(".hero__role");
 if (role && role.querySelector(".hero__word")) initRole(role);
-document.querySelectorAll(".inspire").forEach(initInspire);
+document.querySelectorAll(".inspire").forEach(initBox);
 
 const workGrid = document.querySelector(".work-grid");
-if (workGrid) renderWork(workGrid, workGrid.dataset.archived === "true");
+if (workGrid) renderWork(workGrid);
 
 const selectedTrack = document.querySelector("[data-carousel]");
 if (selectedTrack) renderSelected(selectedTrack);
@@ -754,9 +680,6 @@ if (project) {
   if (custom) window.CUSTOM_LAYOUTS[custom.dataset.layout].init(custom);
 }
 
-const stickers = document.querySelector(".stickers");
-if (stickers) initStickers(stickers);
-
 // Content taller than the screen pins at its bottom edge, so all of it is seen before the panel slides over
 const pinned = document.querySelectorAll("[data-pin]");
 const cvPanel = document.querySelector(".cv");
@@ -768,13 +691,13 @@ const setPins = () => {
 if (pinned.length) { setPins(); addEventListener("resize", setPins); addEventListener("load", setPins); }
 
 // The folder, its logo, caption and dragged-out icons fade out once Selected Work slides up, so nothing peeks over the panel
-const heroLogo = document.querySelector(".inspire");
+const inspire = document.querySelector(".inspire");
 const selectedPanel = document.querySelector(".selected");
-if (heroLogo && selectedPanel) {
-  const hideLogo = () => heroLogo.classList.toggle("is-hidden", selectedPanel.getBoundingClientRect().top < innerHeight - 40);
-  hideLogo();
-  addEventListener("scroll", hideLogo, { passive: true });
-  addEventListener("resize", hideLogo);
+if (inspire && selectedPanel) {
+  const hideInspire = () => inspire.classList.toggle("is-hidden", selectedPanel.getBoundingClientRect().top < innerHeight - 40);
+  hideInspire();
+  addEventListener("scroll", hideInspire, { passive: true });
+  addEventListener("resize", hideInspire);
 }
 
 const cvTitle = document.querySelector(".cv .panel__title");
